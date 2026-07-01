@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>kayo Birthday 🎂</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Metal+Mania&family=Cairo:wght@400;700&display=swap');
+
+:root {
+  --main-blue: #B7BF9C;
+  --accent-pink: #C9C2AC;
+  --deep-purple: #DCB7BC;
+  --light-blue: #EDC2CA;
+  --lavender: #FFCDD8;
+  --soft-white: #C9C2AC;
+}
+
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  color: var(--soft-white);
+  overflow-x: hidden;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: linear-gradient(
+    135deg,
+    #1A0712,
+    #330A21,
+    #5A0F3B,
+    #8A1C5C,
+    #C2185B,
+    #FF4D8D,
+    #C2185B,
+    #5A0F3B
+  );
+  background-size: 600% 600%;
+  animation: gradientFlow 15s ease infinite;
+}
+
+@keyframes gradientFlow {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+
+#gift-screen {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle, #3A0A24 40%, #14040D 100%);
+  z-index: 9999;
+  color: white;
+  transition: opacity 0.7s ease;
+}
+
+#gift-box {
+  width: 160px;
+  height: 160px;
+background: linear-gradient(
+  145deg,
+  #C9C2AC,
+  #D63384,
+  #8A1C5C
+);
+  border-radius: 20px;
+  position: relative;
+  box-shadow: 0 0 30px rgba(0,147,233,0.7);
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+#gift-box::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 20px;
+  background: #B7BF9C;
+  transform: translateY(-50%);
+}
+
+#gift-box::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 20px;
+  height: 100%;
+  background: #B7BF9C;
+  transform: translateX(-50%);
+}
+
+#gift-box.open {
+  transform: scale(1.1) rotate(-3deg);
+  box-shadow: 0 0 50px rgba(0,147,233,1);
+}
+
+#message {
+  display: none;
+  margin-top: 20px;
+  font-size: 1.4em;
+  color: #BDE0FE;
+  text-shadow: 0 0 10px var(--main-blue);
+}
+
+#continue-btn {
+  display: none;
+  margin-top: 25px;
+background: rgba(58,10,36,0.65);
+  color: #fff;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 1.1em;
+  opacity: 0;
+  transition: opacity 0.7s ease;
+}
+
+#continue-btn.show {
+  display: inline-block;
+  opacity: 1;
+}
+
+h1 {
+  font-family: 'Metal Mania', cursive;
+  font-size: 3.2em;
+  margin-top: 20px;
+color: #FFD6E8;
+  text-shadow: 0 0 12px #301B4F, 0 0 25px #3A1C7A;
+  animation: glow 2.5s infinite alternate;
+}
+
+@keyframes glow {
+  from { text-shadow: 0 0 12px #5CC8FF, 0 0 30px #4F32A5; }
+  to { text-shadow: 0 0 20px #B3E5FC, 0 0 40px #7B4DD8; }
+}
+
+p {
+  font-size: 1.3em;
+  color: #D8F8FF;
+  text-shadow: 0 0 4px #000;
+  line-height: 1.6;
+}
+
+img, video {
+  width: 260px;
+  margin-top: 25px;
+  border-radius: 20px;
+  box-shadow: 0 0 25px rgba(150,90,255,0.4), 0 8px 25px rgba(0,0,0,0.5);
+  transition: transform 0.4s ease, opacity 0.4s ease, box-shadow 0.4s ease;
+  max-width: 90%;
+  height: auto;
+}
+
+img:hover {
+  transform: scale(1.07) rotate(-1deg);
+  opacity: 0.9;
+  box-shadow: 0 0 40px rgba(160,100,255,0.8), 0 12px 35px rgba(0,0,0,0.7);
+}
+
+button {
+  margin-top: 20px;
+  background: transparent;
+  border: 2px solid rgba(130,90,255,0.4);
+  color: #CBEAFF;
+  padding: 12px 32px;
+  font-size: 1.1em;
+  font-weight: bold;
+  border-radius: 25px;
+  cursor: pointer;
+box-shadow: 0 0 20px rgba(255,77,141,0.35);
+  transition: all 0.35s ease-in-out;
+  position: relative;
+  overflow: hidden;
+}
+
+button:hover {
+  background: linear-gradient(
+    90deg,
+    rgba(255,77,141,0.35),
+    rgba(194,24,91,0.35)
+  );
+  border-color: #FF6FA8;
+  box-shadow: 0 0 25px #FF4D8D;
+  color: #FFF;
+  transform: scale(1.07);
+}
+.page {
+  display: none;
+  margin: 20px auto;
+  padding: 20px;
+  border-radius: 15px;
+  background: rgba(25,20,50,0.6);
+  box-shadow: 0 0 15px rgba(120,80,255,0.3);
+  max-width: 800px;
+  animation: fadeIn 0.8s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.video-box video {
+  width: 100%;
+  max-width: 400px;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(140,80,255,0.5);
+  margin-bottom: 20px;
+}
+.raining-hearts, .gift-hearts {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 999;
+}
+
+.raining-hearts .heart, .gift-hearts .heart {
+  position: absolute;
+  font-size: 20px;
+  opacity: 0.8;
+  animation: fall linear forwards;
+}
+
+@keyframes fall {
+  0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+}
+
+@keyframes floatUp {
+  0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(-120px) rotate(360deg); opacity: 0; }
+}
+
+.images-row img {
+  opacity: 0;
+  transform: scale(0.9);
+  animation: popIn 0.8s ease forwards;
+}
+
+@keyframes popIn {
+  to { opacity: 1; transform: scale(1); }
+}
+
+.videos-row {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-top: 30px;
+}
+
+.videos-row video {
+  width: 300px;
+  height: 180px;
+  border-radius: 15px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.videos-row video:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 25px rgba(255,255,255,0.5);
+}
+</style>
+</head>
+<body>
+
+<div id="gift-screen">
+  <div id="gift-box"></div>
+  <div id="message">well now officially you are 23</div>
+  <button id="continue-btn">let's make it loud </button>
+  <div id="giftHeartsContainer" class="gift-hearts" aria-hidden="true"></div>
+</div>
+
+<div class="raining-hearts" id="rainingHearts"></div>
+
+<div id="mainContent" style="display:none;">
+  <div id="hearts-container"></div>
+  <h1>هابي بيرث دايي فاتيييي</h1>
+  <p>كل عام وانتي بخير وتنعاد عليكي بالصحه يارب<br>ms.kayo </p>
+  <button onclick="togglePages()">only for لوميي</button>
+  <div id="pages-container" style="display:none;">
+    <div id="pages-list">
+      <button onclick="showPage(1)">تهنئة فصفص و مرمر</button>
+      <button onclick="showPage(2)"> تهنئة نسرين</button>
+      <button onclick="showPage(3)"> تهنئة الهام</button>
+      <button onclick="showPage(4)">تهنئة اسما </button>
+      <button onclick="showPage(5)">تهنئة بشرى </button>
+      <button onclick="showPage(6)">تهنئة سلمى</button>
+      <button onclick="showPage(7)">تهنئة اميمة</button>
+      
+    </div>
+      <div class="page" id="page1"><h2> فصفص مرمر</h2>في هدا اليوم و قلب سنوات عديدة ، في مكان في هدا الارض شاسعة ولدة زهرة التي انارت حياة والدي و كانت فرحة عائلتهما الصغيرة لتسير في دربها حتا نروت حياتنا و مضت بها إلى الافضل تم الافضل لتجعلنا مشرقين كنجوم الذين اضائو سمائها و ساعدتهم بدورها ليصبحو ليس كنجوم فسماء بل محور الكون كله ، اي دعمتنا لنبني جوهرنا بأسس متينة لا تتزحزح كتباتها المستمر الدي لطالما دعمنا لنمضي للأمام فنحن تربيتها و هي التي علمتنا هذا فدائما و ابدا سنستمر فدعمها و مساندتها و دفاع عنها ما حيينا، وفي ربيعها الثالث و العشرون نريد ان نقول لها انها شخصنا المفضل خلال كل مراحل حياتنا و دائما ما أعجبنا بها فحتا لو تعرفنا على الكتير من الناس ستضلين شخصنا المفضل 
+فكل عام و انت الزهرة التي زينت الحقل 
+و النور الذي أضاء كل من يقترب
+و الحب الذي غمر الجميع 
+و الشخص الذي يحتاجه كل إنسان في حياته و نحن محضوضين بكونك سندنا و اختنا الكبيرة 
+كل عام و انت بالف خير حبيبتنا الغالية♥️🎂✨</p><button onclick="backToList()">العودة للقائمة</button></div>
+ 
+        <div class="page" id="page2"><h2>نسرين </h2>أكتب إليكِ اليوم، والقلب يفيض بمشاعر الامتنان والاعتزاز بكل لحظة جمعتنا. بمناسبة يوم ميلادك، لم أجد هدية أثمن من كلمات صادقة تُعبر عما تحمله لكِ نفسي من معزة وتقدير.
+
+سنتان كاملتان مرّتا كـلمح البصر، لكنهما تركتا في روحي أثراً لا يُمحى. سنتان تقاسمنا فيهما لقمة العيش، وتفاصيل السكن اليومية، وأحاديث الليل الطويلة التي خففت عنا غربة الأيام وثقل الدراسة. لقد كنتِ لي أكثر من مجرد زميلة سكن أو دراسة؛ كنتِ الملجأ الآمن الذي ألوذ إليه كلما ضاقت بي السبل أو نال مني التعب.
+
+شكراً لكِ على كل ابتسامة وهبتِني إياها في لحظات الضيق، شكراً على دعمكِ المستمر، وعلى صبركِ ونبل أخلاقكِ طوال فترة عيشنا معاً. أدعو الله في عامكِ الجديد أن يملأ قلبكِ بالفرح، وأن يُحقق لكِ كل ما تطمحين إليه من نجاح وتوفيق، وأن يديم نعمته عليكِ.
+
+كل عام وأنتِ بخير، وكل عام وأنتِ الصديقة الوفية والجميلة.<p></p><button onclick="backToList()">العودة للقائمة</button></div>
+    <div class="page" id="page3"><h2>الهام</h2>​"حبيبتي وصديقتي الغالية، كل عام وأنتِ بألف خير. فهاد النهار السعيد بغيت نقول ليك شحال أنا محظوظة بوجودك فحياتي الله يخلينا لبعضياتنا ديما صحابات ويخلي هاد الدفء والمودة اللي بيناتنا، ويكبرنا ف طاعته عيد ميلاد سعيد يا أحلى صديقة واجمل انسانة عرفتها فحياتي كنتمنى ليك كل الخير والسعادة والتوفيق فحياتك.<p></p><button onclick="backToList()">العودة للقائمة</button></div>
+  </div>
+  <div class="page" id="page4"><h2>اسماء</h2>عيد ميلاد سعيد لأغلى أخت، فاطمة الزهراء. 🎉❤️
+
+اليوم كتكملي 23 سنة، وكنتمنا لك من كل قلبي تكون هاد السنة مليئة بالخير، والفرحة، والنجاح، وتحقيق كل أحلامك. الله يحفظك ويطول فعمرك، ويرزقك الصحة والسعادة، ويديم عليك الابتسامة والراحة.
+
+شكراً على حبك وحنانك ووجودك الجميل في حياتنا. كنبغيك بزاف، وكنفتخر بكونك أختي الكبيرة. كل عام وأنتِ بألف خير، وعقبال 100 سنة كلها أفراح وبركات. 🤍🎂🎁<p></p><button onclick="backToList()">العودة للقائمة</button></div>
+    <div class="page" id="page5"><h2>بشرى</h2>فاطمة الزهراء الحلوة أطال الله في عمرك وجعلك تفنينه فيما يرضيه 
+دمت طيبة💗<p></p><button onclick="backToList()">العودة للقائمة</button></div>
+    <div class="page" id="page6"><h2>سلمى</h2>صديقتك سلمى،
+كل عام وأنتِ بخير حبيبتي. أرجو من الله سبحانه وتعالى أن يمنَّ عليكِ في هذه السنة الجديدة بالفرح والسعادة والراحة، وأسأل المولى أن يوفقكِ في حياتكِ وييسر أمركِ، وأن يزيح كل همٍّ وحزنٍ وضيقٍ من حياتكِ.
+وأسأل الله أن يرزقنا دوام المحبة، وأن يجمعنا دائمًا على الخير، وأن يكتب لنا لقاءً في جنات النعيم كما جمعنا في الدنيا. وأتمنى أن تبقى ابتسامتكِ لا تفارق وجهكِ، وأن أراكِ دائمًا تحققين كل ما تتمنينه.
+أحبكِ في الله، وكل عام وأنتِ إلى الله أقرب، وإلى السعادة أقرب. 🤍🌷</p><button onclick="backToList()">العودة للقائمة</button></div>
+ <div class="page" id="page7"><h2>اميمة</h2>إلى أغلى صديقة ❤️
+
+كل عام وأنتِ بخير، وكل عام وأنتِ النور الذي يضيء أيامي، والسند الذي لم يخذلني يومًا. تسع سنوات من الصداقة كانت مليئة بالمواقف والذكريات والضحكات، أثبتتِ فيها أنكِ أخت لم تلدها أمي، ورفيقة درب حقيقية.
+
+شكرًا لأنكِ كنتِ دائمًا بجانبي في أوقات الفرح والحزن، ولأنكِ كنتِ القوة التي أستند إليها عندما أضعف، وأسأل الله أن يديم صداقتنا أعوامًا طويلة، وأن يرزقكِ الصحة والسعادة وتحقيق كل أحلامكِ.
+
+في يوم ميلادكِ، أتمنى لكِ عامًا جديدًا مليئًا بالنجاح، والطمأنينة، والابتسامات التي لا تفارق وجهكِ. أسأل الله أن يجعل كل أيامكِ أعيادًا🎂🎉🤍</p><button onclick="backToList()">العودة للقائمة</button></div>
+
+     </div>
+
+  <img src="https://i.postimg.cc/0yv2drrj/IMG-20260702-WA0046.jpg" alt="اعتذر الصورة من ميلاد شهد بس ترشي انشغل" />
+  <br><button onclick="showSurprise()">وقت الهزايا😋</button>
+
+  <div id="surprise" style="display:none;">
+    <div class="images-row" style="display:flex; justify-content:center; gap:15px; flex-wrap:wrap; margin-bottom:20px;">
+      <div style="text-align:center;">
+       
+    </div>
+      <div class="videos-row">
+        <video controls>
+          <source src="fsfs_mrmr_1.mp4" type="video/mp4">
+          متصفحك لا يدعم تشغيل الفيديو.
+        </video>
+        <video controls>
+          <source src="fsfs_mrmr_2.mp4" type="video/mp4">
+          متصفحك لا يدعم تشغيل الفيديو.
+        </video>
+        <video controls>
+          <source src="fsfs_mrmr_3.mp4" type="video/mp4">
+          متصفحك لا يدعم تشغيل الفيديو.
+        </video>
+        <video controls>
+          <source src="samya.mp4" type="video/mp4">
+          متصفحك لا يدعم تشغيل الفيديو.
+        </video>
+       <video controls>
+          <source src="elham.mp4" type="video/mp4">
+          متصفحك لا يدعم تشغيل الفيديو.
+        </video>
+        <video controls>
+          <source src="amema.mp4" type="video/mp4">
+          متصفحك لا يدعم تشغيل الفيديو.
+        </video>
+       <video controls>
+          <source src="nsrean.mp4" type="video/mp4">
+          متصفحك لا يدعم تشغيل الفيديو.
+        </video>
+    
+
+<style>
+.link-button {
+  display: inline-block;
+  background: linear-gradient(135deg, #0077B6, #00B4D8);
+  color: white;
+  padding: 12px 24px;
+  border-radius: 30px;
+  text-decoration: none;
+  font-family: 'Cairo', sans-serif;
+  font-weight: bold;
+  transition: 0.3s;
+}
+.link-button:hover {
+  transform: scale(1.05);
+  background: linear-gradient(135deg, #00B4D8, #0096C7);
+}
+</style>
+    </div>
+  </div>
+</div>
+
+<script>
+const giftBox = document.getElementById('gift-box');
+const message = document.getElementById('message');
+const continueBtn = document.getElementById('continue-btn');
+const giftScreen = document.getElementById('gift-screen');
+const mainContent = document.getElementById('mainContent');
+const giftHeartsContainer = document.getElementById('giftHeartsContainer');
+
+document.body.style.overflow = 'hidden';
+
+giftBox.addEventListener('click', () => {
+  giftBox.classList.add('open');
+  createGiftHearts();
+  setTimeout(() => {
+    message.style.display = 'block';
+    continueBtn.classList.add('show');
+  }, 600);
+});
+
+continueBtn.addEventListener('click', () => {
+  giftScreen.style.opacity = '0';
+  setTimeout(() => {
+    giftScreen.style.display = 'none';
+    mainContent.style.display = 'block';
+    document.body.style.overflow = 'auto';
+    giftHeartsContainer.innerHTML = '';
+  }, 700);
+});
+
+function createGiftHearts() {
+  const count = 25;
+  for (let i = 0; i < count; i++) {
+    const heart = document.createElement('div');
+    heart.textContent = '🩷🍓';
+    heart.classList.add('heart');
+    heart.style.left = Math.random() * 100 + '%';
+    heart.style.bottom = '-30px';
+    heart.style.fontSize = (14 + Math.random() * 26) + 'px';
+    const duration = (2 + Math.random() * 3).toFixed(2);
+    heart.style.animation = `floatUp ${duration}s ease-out forwards`;
+    heart.style.transform = `translateX(${(Math.random() - 0.5) * 40}px)`;
+    giftHeartsContainer.appendChild(heart);
+    setTimeout(() => heart.remove(), (parseFloat(duration) + 0.3) * 1000);
+  }
+}
+setInterval(() => {
+  const heart = document.createElement('div');
+  heart.classList.add('heart');
+  heart.textContent = heartEmojis[Math.floor(Math.random() * heartEmojis.length)];
+  heart.style.left = Math.random() * 100 + 'vw';
+  heart.style.fontSize = (20 + Math.random() * 20) + 'px';
+  const duration = (3 + Math.random() * 3).toFixed(2);
+  heart.style.animationDuration = `${duration}s`;
+  heartsContainer.appendChild(heart);
+  setTimeout(() => heart.remove(), duration * 1000);
+}, 400);
+
+function togglePages() {
+  const container = document.getElementById('pages-container');
+  container.style.display = container.style.display === 'none' ? 'block' : 'none';
+}
+
+function showPage(num) {
+  document.querySelectorAll('.page').forEach(p => p.style.display = 'none');
+  const page = document.getElementById('page' + num);
+  page.style.display = 'block';
+  page.scrollIntoView({ behavior: "smooth" });
+}
+
+function backToList() {
+  document.querySelectorAll('.page').forEach(p => p.style.display = 'none');
+  document.getElementById('pages-list').scrollIntoView({ behavior: "smooth" });
+}
+
+function showSurprise() {
+  const surprise = document.getElementById("surprise");
+  surprise.style.display = "block";
+  surprise.scrollIntoView({ behavior: "smooth" });
+}
+</script>
+</body>
+</html>
